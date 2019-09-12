@@ -6,8 +6,12 @@ fork by https://github.com/neuland/micro-frontends
 # Usage
 ## My Env
 ```
-OS: Mac OS Mojave v10.14.6
-Docker: Docker Desktop v2.1.0.1
+$ sw_vers
+ProductName:	Mac OS X
+ProductVersion:	10.14.6
+BuildVersion:	18G84
+$ docker -v
+Docker version 19.03.1, build 74b1e89
 ```
 
 ## Install
