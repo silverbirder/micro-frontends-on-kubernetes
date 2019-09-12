@@ -1,0 +1,28 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert -f docker-compose.yml
+    kompose.version: 1.17.0 (a74acad)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: team-red
+  name: team-red
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        io.kompose.service: team-red
+    spec:
+      containers:
+      - image: team-red:1.0.0
+        name: team-red
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 3003
+        resources: {}
+status: {}

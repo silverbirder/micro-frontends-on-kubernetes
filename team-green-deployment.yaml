@@ -1,0 +1,28 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert -f docker-compose.yml
+    kompose.version: 1.17.0 (a74acad)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: team-green
+  name: team-green
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        io.kompose.service: team-green
+    spec:
+      containers:
+      - image: team-green:1.0.0
+        name: team-green
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 3002
+        resources: {}
+status: {}
