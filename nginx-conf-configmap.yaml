@@ -4,15 +4,15 @@ metadata:
   name: nginx-conf
 data:
   nginx.conf: |
-    upstream team_blue {
+    upstream team-blue {
       server team-blue:3001;
     }
 
-    upstream team_green {
+    upstream team-green {
       server team-green:3002;
     }
 
-    upstream team_red {
+    upstream team-red {
       server team-red:3003;
     }
 
@@ -26,15 +26,15 @@ data:
       ssi on;
 
       location /blue {
-        proxy_pass  http://team_blue;
+        proxy_pass  http://team-blue;
       }
 
       location /green {
-        proxy_pass  http://team_green;
+        proxy_pass  http://team-green;
       }
 
       location /red {
-        proxy_pass  http://team_red;
+        proxy_pass  http://team-red;
       }
 
       location /common {
@@ -42,6 +42,6 @@ data:
       }
 
       location / {
-        proxy_pass  http://team_red;
+        proxy_pass  http://team-red;
       }
     }
