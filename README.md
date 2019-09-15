@@ -58,8 +58,7 @@ $ kind load docker-image team-nginx:1.0.0
 ## Apply
 ```bash
 $ find . -name "*.yaml"|xargs -I {} kubectl apply -f {}
-$ nginx_pod=$(k get pods | grep nginx | awk '{print $1}')
-$ kubectl port-forward $nginx_pod 3000:3000
+$ kubectl port-forward $(k get pods | grep nginx | awk '{print $1}') 3000:3000
 ```
 
 ## Delete
@@ -69,9 +68,9 @@ $ kind delete cluster --name kind
 ```
 
 ```bash
-$ team_blue_image=$(docker images | grep team-blue | awk '{print $3}')
-$ team_green_image=$(docker images | grep team-green | awk '{print $3}')
-$ team_red_image=$(docker images | grep team-red | awk '{print $3}')
-$ team_nginx_image=$(docker images | grep team-nginx | awk '{print $3}')
-$ docker rmi $team_blue_image $team_green_image $team_red_image $team_nginx_image
+$ docker rmi \
+  $(docker images | grep team-blue | awk '{print $3}') \
+  $(docker images | grep team-green | awk '{print $3}') \
+  $(docker images | grep team-red | awk '{print $3}') \
+  $(docker images | grep team-nginx | awk '{print $3}')  
 ```
