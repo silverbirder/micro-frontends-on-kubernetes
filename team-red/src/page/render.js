@@ -47,7 +47,7 @@ export default function renderPage(sku = 't_porsche') {
     <div id="image"><div><img src="${variant.image}" alt="${variant.name}" /></div></div>
     <h2 id="name">${product.name} <small>${variant.name}</small></h2>
     <div id="options">${product.variants.map(v => renderOption(v, sku)).join('')}</div>
-    <blue-buy id="buy" sku="${variant.sku}"><!--#include virtual="/blue-buy?sku=${encodeURIComponent(variant.sku)}" --></blue-buy>
+    <blue-buy id="buy" price="${variant.price}"><!--#include virtual="/blue-buy?price=${encodeURIComponent(variant.price)}" --></blue-buy>
     <green-recos id="reco" sku="${variant.sku}"><!--#include virtual="/green-recos?sku=${encodeURIComponent(variant.sku)}" --></green-recos>
   `;
 }
