@@ -19,7 +19,7 @@ spec:
         io.kompose.service: team-red
     spec:
       containers:
-      - image: team-red:1.0.0
+      - image: team-red
         name: team-red
         imagePullPolicy: Never
         ports:

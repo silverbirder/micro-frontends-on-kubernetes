@@ -1,0 +1,16 @@
+apiVersion: skaffold/v1beta14
+kind: Config
+build:
+  artifacts:
+    - image: team-green
+      context: ./team-green/
+    - image: team-red
+      context: ./team-red/
+    - image: team-blue
+      context: ./team-blue/
+    - image: team-nginx
+      context: ./team-nginx/
+deploy:
+  kubectl:
+    manifests:
+      - team-*.yaml

@@ -15,9 +15,20 @@ Docker version 19.03.1, build 74b1e89
 ```
 
 ## Install
-use [kind](https://github.com/kubernetes-sigs/kind)
+### minikube
+use [minikube](https://github.com/kubernetes/minikube) for single cluster or single node
 
-prepare kind.
+``` bash
+$ brew cask install minikube
+$ curl -LO https://storage.googleapis.com/minikube/releases/latest/docker-machine-driver-hyperkit \
+  && sudo install -o root -m 4755 docker-machine-driver-hyperkit /usr/local/bin/
+$ minikube start --vm-driver=hyperkit
+$ eval $(minikube docker-env)
+```
+
+### kind
+use [kind](https://github.com/kubernetes-sigs/kind) for multi clusters or multi nodes
+
 ```bash
 $ brew install go
 $ go version
@@ -40,19 +51,31 @@ $ export KUBECONFIG="$(kind get kubeconfig-path --name="kind")"
 
 ## Build & Load
 ```bash
-$ cd team-blue && docker build -t team-blue:1.0.0 . && cd ..
-$ cd team-green && docker build -t team-green:1.0.0 . && cd ..
-$ cd team-red && docker build -t team-red:1.0.0 . && cd ..
-$ cd team-nginx && docker build -t team-nginx:1.0.0 . && cd ..
+$ cd team-blue && docker build -t team-blue . && cd ..
+$ cd team-green && docker build -t team-green . && cd ..
+$ cd team-red && docker build -t team-red . && cd ..
+$ cd team-nginx && docker build -t team-nginx . && cd ..
 ```
 
 ※ The yaml files was generated using [kompose](https://github.com/kubernetes/kompose)
 
+next step is for kind
 ```bash
 $ kind load docker-image team-blue:1.0.0
 $ kind load docker-image team-green:1.0.0
 $ kind load docker-image team-red:1.0.0
 $ kind load docker-image team-nginx:1.0.0
+```
+### skaffold
+
+[skaffold](https://github.com/GoogleContainerTools/skaffold) is 
+> Easy and Repeatable Kubernetes Developmen
+
+I use it for minikube
+
+```
+$ brew install skaffold
+$ skaffold dev
 ```
 
 ## Apply
@@ -64,6 +87,10 @@ $ kubectl port-forward $(k get pods | grep nginx | awk '{print $1}') 3000:3000
 ## Delete
 ```bash
 $ find . -name "*.yaml"|xargs -I {} kubectl delete -f {}
+```
+
+next step is for kind
+```bash
 $ kind delete cluster --name kind
 ```
 
