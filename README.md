@@ -83,16 +83,16 @@ $ skaffold dev
 $ kubectl run mysql-client --image=mysql:5.7 -i --rm --restart=Never --\
   mysql -h mysql-0.mysql <<EOF
 CREATE DATABASE web;
-CREATE TABLE web.relatedProducts (name varchar(255), related_sku int);
-INSERT INTO web.relatedProducts VALUES ('t_porsche', 3);
-INSERT INTO web.relatedProducts VALUES ('t_porsche', 5);
-INSERT INTO web.relatedProducts VALUES ('t_porsche', 6);
-INSERT INTO web.relatedProducts VALUES ('t_fendt', 3);
-INSERT INTO web.relatedProducts VALUES ('t_fendt', 6);
-INSERT INTO web.relatedProducts VALUES ('t_fendt', 4);
-INSERT INTO web.relatedProducts VALUES ('t_eicher', 1);
-INSERT INTO web.relatedProducts VALUES ('t_eicher', 8);
-INSERT INTO web.relatedProducts VALUES ('t_eicher', 7);
+CREATE TABLE web.teamGreenRelatedProducts (name varchar(255), related_sku int);
+INSERT INTO web.teamGreenRelatedProducts VALUES ('t_porsche', 3);
+INSERT INTO web.teamGreenRelatedProducts VALUES ('t_porsche', 5);
+INSERT INTO web.teamGreenRelatedProducts VALUES ('t_porsche', 6);
+INSERT INTO web.teamGreenRelatedProducts VALUES ('t_fendt', 3);
+INSERT INTO web.teamGreenRelatedProducts VALUES ('t_fendt', 6);
+INSERT INTO web.teamGreenRelatedProducts VALUES ('t_fendt', 4);
+INSERT INTO web.teamGreenRelatedProducts VALUES ('t_eicher', 1);
+INSERT INTO web.teamGreenRelatedProducts VALUES ('t_eicher', 8);
+INSERT INTO web.teamGreenRelatedProducts VALUES ('t_eicher', 7);
 EOF
 ```
 

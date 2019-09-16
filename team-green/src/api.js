@@ -12,7 +12,7 @@ export default async function recoApi(req, res) {
   pool.query = util.promisify(pool.query);
   let results = [];
   try {
-    const rowData = await pool.query(`SELECT * FROM relatedProducts WHERE name = "${req.query.sku}"`);
+    const rowData = await pool.query(`SELECT * FROM teamGreenRelatedProducts WHERE name = "${req.query.sku}"`);
     results = rowData.map(record => record['related_sku']);
     pool.end();
   } catch (err) {
