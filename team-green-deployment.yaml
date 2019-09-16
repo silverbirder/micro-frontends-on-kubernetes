@@ -25,4 +25,8 @@ spec:
         ports:
         - containerPort: 3002
         resources: {}
+        envFrom:
+          - configMapRef:
+              name: team-green
+            prefix: TEAM_GREEN_
 status: {}

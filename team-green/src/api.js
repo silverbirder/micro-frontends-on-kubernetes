@@ -4,9 +4,9 @@ import * as util from 'util';
 export default async function recoApi(req, res) {
   const pool = mysql.createPool({
     connectionLimit: 10,
-    host: 'mysql-read',
-    user: 'root',
-    password: '',
+    host: process.env.TEAM_GREEN_DB_HOST,
+    user: process.env.TEAM_GREEN_DB_USER,
+    password: process.env.TEAM_GREEN_DB_PASSWORD,
     database: 'web',
   });
   pool.query = util.promisify(pool.query);
