@@ -5,34 +5,38 @@ import renderPage from './page/render';
 const $app = document.getElementById('app');
 
 window.addEventListener('popstate', () => {
-  rerender(window.location.pathname.substr(1));
+    rerender(window.location.pathname.substr(1));
 });
 
 function handleClickOption(e) {
-  e.preventDefault();
-  const sku = e.currentTarget.getAttribute('data-sku');
-  window.history.pushState(null, null, sku);
-  rerender(sku);
+    e.preventDefault();
+    const sku = e.currentTarget.getAttribute('data-sku');
+    window.history.pushState(null, null, sku);
+    rerender(sku);
 }
 
 function addListeners() {
-  const $btns = $app.querySelectorAll('#options a');
-  Array.prototype.forEach.call($btns, $btn => (
-     $btn.addEventListener('click', handleClickOption)
-  ));
+    const $btns = $app.querySelectorAll('#options a');
+    Array.prototype.forEach.call($btns, $btn => (
+        $btn.addEventListener('click', handleClickOption)
+    ));
 }
 
 function removeListeners() {
-  const $btns = $app.querySelectorAll('#options a');
-  Array.prototype.forEach.call($btns, $btn => (
-     $btn.removeEventListener('click', handleClickOption)
-  ));
+    const $btns = $app.querySelectorAll('#options a');
+    Array.prototype.forEach.call($btns, $btn => (
+        $btn.removeEventListener('click', handleClickOption)
+    ));
 }
 
-function rerender(sku) {
-  removeListeners();
-  $app.innerHTML = renderPage(sku);
-  addListeners();
+function rerender(data) {
+    window.fetch(`/red/api/products`).then((response) => {
+        response.json().then(variants => {
+            removeListeners();
+            $app.innerHTML = renderPage(variants, data);
+            addListeners();
+        });
+    });
 }
 
 addListeners();

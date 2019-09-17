@@ -80,10 +80,12 @@ $ skaffold dev
 ## Database
 
 ```bash
-$ kubectl run mysql-client --image=mysql:5.7 -i --rm --restart=Never --\
-  mysql -h mysql-0.mysql <<EOF
+$kubectl run mysql-client --image=mysql:5.7 -i --rm --restart=Never -- mysql -h mysql-0.mysql <<EOF
+ DROP DATABASE web;
+EOF
+$ kubectl run mysql-client --image=mysql:5.7 -i --rm --restart=Never -- mysql -h mysql-0.mysql <<EOF
 CREATE DATABASE web;
-CREATE TABLE web.teamGreenRelatedProducts (name varchar(255), related_sku int);
+CREATE TABLE web.teamGreenRelatedProducts (sku varchar(255), related_sku_id int);
 INSERT INTO web.teamGreenRelatedProducts VALUES ('t_porsche', 3);
 INSERT INTO web.teamGreenRelatedProducts VALUES ('t_porsche', 5);
 INSERT INTO web.teamGreenRelatedProducts VALUES ('t_porsche', 6);
@@ -93,6 +95,10 @@ INSERT INTO web.teamGreenRelatedProducts VALUES ('t_fendt', 4);
 INSERT INTO web.teamGreenRelatedProducts VALUES ('t_eicher', 1);
 INSERT INTO web.teamGreenRelatedProducts VALUES ('t_eicher', 8);
 INSERT INTO web.teamGreenRelatedProducts VALUES ('t_eicher', 7);
+CREATE TABLE web.teamRedProducts (product_name varchar(255), sku varchar(255), color varchar(255), sku_name varchar(255), image varchar(255), thumb varchar(255), price varchar(255));
+INSERT INTO web.teamRedProducts VALUES ('Tractor', 't_fendt', 'green', 'Fendt F20 Dieselroß', '/red/images/tractor-red.jpg', '/red/images/tractor-red-thumb.jpg', '$66,00');
+INSERT INTO web.teamRedProducts VALUES ('Tractor', 't_porsche', 'red', 'Porsche-Diesel Master 419', '/red/images/tractor-green.jpg', '/red/images/tractor-green-thumb.jpg', '$54,00');
+INSERT INTO web.teamRedProducts VALUES ('Tractor', 't_eicher', 'blue', 'Eicher Diesel 215/16', '/red/images/tractor-blue.jpg', '/red/images/tractor-blue-thumb.jpg', '$58,00');
 EOF
 ```
 

@@ -10,7 +10,7 @@ app.use('/green/images', express.static('./images'));
 app.use('/green', express.static('./build'));
 
 app.use('/green-recos', (req, res) => {
-  res.send(renderRecos());
+    res.send(renderRecos());
 });
 
 app.use('/green/api/reco', recoApi);

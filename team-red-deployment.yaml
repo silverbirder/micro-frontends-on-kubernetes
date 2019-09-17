@@ -25,4 +25,8 @@ spec:
         ports:
         - containerPort: 3003
         resources: {}
+        envFrom:
+          - configMapRef:
+              name: team-red
+            prefix: TEAM_RED_
 status: {}

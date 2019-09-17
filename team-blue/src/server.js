@@ -9,10 +9,10 @@ app.use(morgan('dev'));
 app.use('/blue', express.static('./build'));
 
 app.use('/blue-buy', (req, res) => {
-  res.send(renderBuy());
+    res.send(renderBuy());
 });
 app.use('/blue-basket', (req, res) => {
-  res.send(renderBasket(0));
+    res.send(renderBasket(0));
 });
 
 app.listen(3001);
