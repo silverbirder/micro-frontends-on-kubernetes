@@ -122,9 +122,5 @@ $ kind delete cluster --name kind
 ```
 
 ```bash
-$ docker rmi \
-  $(docker images | grep team-blue | awk '{print $3}') \
-  $(docker images | grep team-green | awk '{print $3}') \
-  $(docker images | grep team-red | awk '{print $3}') \
-  $(docker images | grep team-nginx | awk '{print $3}')  
+$ docker images | grep "team-" | awk '{print $3}' | xargs docker rmi -f 
 ```
