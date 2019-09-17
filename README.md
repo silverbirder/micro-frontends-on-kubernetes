@@ -35,17 +35,6 @@ $ go version
 go version go1.13 darwin/amd64
 $ PATH=${PATH}:$(go env GOPATH)/bin
 $ kind create cluster
-Creating cluster "kind" ...
- ✓ Ensuring node image (kindest/node:v1.15.3) 🖼
- ✓ Preparing nodes 📦
- ✓ Creating kubeadm config 📜
- ✓ Starting control-plane 🕹️
- ✓ Installing CNI 🔌
- ✓ Installing StorageClass 💾
-Cluster creation complete. You can now use the cluster with:
-
-export KUBECONFIG="$(kind get kubeconfig-path --name="kind")"
-kubectl cluster-info
 $ export KUBECONFIG="$(kind get kubeconfig-path --name="kind")"
 ```
 
