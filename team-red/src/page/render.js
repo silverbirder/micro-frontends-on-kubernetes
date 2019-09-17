@@ -16,7 +16,7 @@ export default function renderPage(variants, sku = 't_porsche') {
     <h1 id="store">The Model Store</h1>
     <blue-basket id="basket"><!--#include virtual="/blue-basket" --></blue-basket>
     <div id="image"><div><img src="${variant.image}" alt="${variant.sku_name}" /></div></div>
-    <h2 id="name">${variant.sku} <small>${variant.sku_name}</small></h2>
+    <h2 id="name">${variant.product_name} <small>${variant.sku_name}</small></h2>
     <div id="options">${variants.map(v => renderOption(v, sku)).join('')}</div>
     <blue-buy id="buy" price="${variant.price}"><!--#include virtual="/blue-buy?price=${encodeURIComponent(variant.price)}" --></blue-buy>
     <green-recos id="reco" sku="${variant.sku}"><!--#include virtual="/green-recos?sku=${encodeURIComponent(variant.sku)}" --></green-recos>
