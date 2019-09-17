@@ -63,3 +63,8 @@ typings/
 .DS_Store
 .idea
 Summary
+
+# build file
+team-blue/build
+team-green/build
+team-red/build
