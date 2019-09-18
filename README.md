@@ -1,5 +1,5 @@
-# micro-frontends-in-kubernetes
-micro frontends application works in kubernetes
+# micro-frontends-on-kubernetes
+micro frontends application works on kubernetes
 fork by https://github.com/neuland/micro-frontends
 
 ![micro-frontends-application](https://res.cloudinary.com/silverbirder/image/upload/v1568757697/micro-frontend-in-kubernetes/micro-frontend-in-kubernetes.png)
