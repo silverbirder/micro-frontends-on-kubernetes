@@ -18,7 +18,10 @@ app.use('/red', express.static('./build'));
 app.get('/:sku?', (req, res) => {
     redFetch().then(variants => {
         const html = renderPage(variants, req.query.sku);
-        res.render('layout', {html});
+        res.render('layout', {
+            html: html,
+            sentry_dns: process.env.TEAM_RED_SENTRY_DNS
+        });
     });
 });
 

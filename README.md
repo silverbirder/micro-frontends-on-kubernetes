@@ -66,7 +66,8 @@ I use it for minikube
 $ brew install skaffold
 $ skaffold dev  --port-forward
 ```
-## Database
+## Prepare
+### Database
 
 ```bash
 $ kubectl run mysql-client --image=mysql:5.7 -i --rm --restart=Never -- mysql -h mysql-0.mysql <<EOF
@@ -92,6 +93,14 @@ INSERT INTO web.teamRedProducts VALUES ('Tractor', 't_porsche', 'red', 'Porsche-
 INSERT INTO web.teamRedProducts VALUES ('Tractor', 't_fendt', 'green', 'Fendt F20 Dieselroß', '/red/images/tractor-green.jpg', '/red/images/tractor-green-thumb.jpg', '54,00');
 INSERT INTO web.teamRedProducts VALUES ('Tractor', 't_eicher', 'blue', 'Eicher Diesel 215/16', '/red/images/tractor-blue.jpg', '/red/images/tractor-blue-thumb.jpg', '58,00');
 EOF
+```
+
+## Secrets
+
+```bash
+$ sentry_dns='https://XXXXXXXXXXXXXXXXXXXXXXXXXXXXX@sentry.io/XXXXXX'
+$ echo "sentry.dns=${sentry_dns}" > team-red-secrets && \
+ kubectl create secret generic team.red --from-env-file=./team-red-secrets 
 ```
 
 ## Apply

@@ -29,4 +29,10 @@ spec:
           - configMapRef:
               name: team-red
             prefix: TEAM_RED_
+        env:
+          - name: TEAM_RED_SENTRY_DNS
+            valueFrom:
+              secretKeyRef:
+                name: team.red
+                key: sentry.dns
 status: {}
