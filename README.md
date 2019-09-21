@@ -103,6 +103,8 @@ $ echo "sentry.dns=${sentry_dns}" > team-red-secrets && \
  kubectl create secret generic team.red --from-env-file=./team-red-secrets 
 ```
 
+※ [sentry](https://docs.sentry.io/error-reporting/quickstart/?platform=browser#configure-the-sdk)
+
 ## Apply
 ```bash
 $ find . -name "*.yaml" | grep -v "skaffold.yaml" |xargs -I {} kubectl apply -f {}
