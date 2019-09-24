@@ -43,7 +43,7 @@ $ export KUBECONFIG="$(kind get kubeconfig-path --name="kind")"
 $ cd team-blue && docker build -t team-blue . && cd ..
 $ cd team-green && docker build -t team-green . && cd ..
 $ cd team-red && docker build -t team-red . && cd ..
-$ cd team-nginx && docker build -t team-nginx . && cd ..
+$ cd team-black && docker build -t team-black . && cd ..
 ```
 
 ※ The yaml files was generated using [kompose](https://github.com/kubernetes/kompose)
@@ -53,7 +53,7 @@ next step is for kind
 $ kind load docker-image team-blue:1.0.0
 $ kind load docker-image team-green:1.0.0
 $ kind load docker-image team-red:1.0.0
-$ kind load docker-image team-nginx:1.0.0
+$ kind load docker-image team-black:1.0.0
 ```
 ### skaffold
 
@@ -64,12 +64,15 @@ I use it for minikube
 
 ```
 $ brew install skaffold
-$ skaffold dev  --port-forward
 ```
 ## Prepare
 ### Database
 
 ```bash
+$ find . -name "mysql*.yaml" | xargs -I {} kubectl apply -f {}
+```
+
+```
 $ kubectl run mysql-client --image=mysql:5.7 -i --rm --restart=Never -- mysql -h mysql-0.mysql <<EOF
 CREATE DATABASE web;
 EOF
@@ -109,6 +112,12 @@ $ echo "sentry.dns=${sentry_dns}" > team-red-secrets && \
 ```bash
 $ find . -name "*.yaml" | grep -v "skaffold.yaml" |xargs -I {} kubectl apply -f {}
 $ kubectl port-forward $(k get pods | grep nginx | awk '{print $1}') 3000:3000
+```
+
+or 
+
+```bash
+$ skaffold dev  --port-forward
 ```
 
 ## Delete

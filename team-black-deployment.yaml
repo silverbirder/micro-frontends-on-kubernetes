@@ -19,7 +19,7 @@ spec:
         io.kompose.service: nginx
     spec:
       containers:
-      - image: team-nginx
+      - image: team-black
         name: nginx
         imagePullPolicy: Never
         ports:

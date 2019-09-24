@@ -8,8 +8,8 @@ build:
       context: ./team-red/
     - image: team-blue
       context: ./team-blue/
-    - image: team-nginx
-      context: ./team-nginx/
+    - image: team-black
+      context: ./team-black/
 deploy:
   kubectl:
     manifests:
